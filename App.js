@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import EventsRecycler from './src/EventsRecycler';
 import EventDetail from './src/EventDetail';
 import { createStackNavigator, createAppContainer } from "react-navigation";
-
+import Login from './src/components/Login/Login';
 const AppNavigator = createStackNavigator(
   {
     Home: {
@@ -21,6 +21,7 @@ export default class App extends React.Component {
   render() {
     return (
       <AppContainer />
+      // <Login /> THIS WILL REPLACE WITH LOGIN
     );
   }
 }
