@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Dimensions, Text, Image } from 'react-native'
 import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview';
+import { red } from 'ansi-colors';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -14,9 +15,10 @@ export default class App extends Component {
         type: 'NORMAL',
         item: {
           id: i,
-         // image: faker.image.avatar(),
-          name: "gege",
-          description: "faker.random.words(5)",
+          eventName: "Event Name",
+          organizer: "Organizer:",
+          location: "Location:",
+          time: "Time:",
         },
       });
     }
@@ -41,13 +43,15 @@ export default class App extends Component {
   }
 
   rowRenderer = (type, data) => {
-    const { image, name, description } = data.item;
+    const { image, eventName, organizer, location, time } = data.item;
     return (
       <View style={styles.listItem}>
         <Image style={styles.image} source={{ uri: image }} />
         <View style={styles.body}>
-          <Text style={styles.name}>{name}</Text>
-          <Text style={styles.description}>{description}</Text>
+          <Text style={styles.name}>{eventName}</Text>
+          <Text style={styles.info}>{organizer}</Text>
+          <Text style={styles.info}>{location}</Text>
+          <Text style={styles.info}>{time}</Text>
         </View>
       </View>
     )
@@ -57,7 +61,6 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <RecyclerListView
-          style={{flex: 1}}
           rowRenderer={this.rowRenderer}
           dataProvider={this.state.list}
           layoutProvider={this.layoutProvider}
@@ -82,12 +85,13 @@ const styles = StyleSheet.create({
   image: {
     height: 80,
     width: 80,
+    backgroundColor: '#abc',
   },
   name: {
     fontSize: 20,
     fontWeight: 'bold',
   },
-  description: {
+  info: {
     fontSize: 14,
     opacity: 0.5,
   },
