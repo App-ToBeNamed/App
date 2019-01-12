@@ -7,7 +7,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 export default class EventDetail extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
-            title: navigation.getParam('eventName', 'A Nested Details Screen'),
+            title: navigation.getParam('eventName', 'Your Event'),
         };
     };
     render() {

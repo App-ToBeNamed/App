@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Dimensions, Text, Image, TouchableHighlight } from 'react-native'
+import { StyleSheet, View, Dimensions, Text, Image, TouchableOpacity, Button } from 'react-native'
 import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview';
+import { Ionicons } from '@expo/vector-icons';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export default class EventsRecycler extends Component {
-  static navigationOptions = {
-    title: 'Explore',
-  };
+
   constructor(props) {
     super(props);
 
@@ -43,11 +42,22 @@ export default class EventsRecycler extends Component {
       };
     })
   }
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Explore',
+      headerRight: (
+        <TouchableOpacity onPress={() => navigation.navigate("AddEvent")} >
+          <Ionicons name="md-add" size={32} color="black" />
+        </TouchableOpacity>
+      ),
+    };
+
+  };
 
   rowRenderer = (type, data) => {
     const { image, eventName, organizer, location, time } = data.item;
     return (
-      <TouchableHighlight onPress={() => this.props.navigation.navigate(
+      <TouchableOpacity onPress={() => this.props.navigation.navigate(
         "EventDetail", {
           image: image,
           eventName: eventName,
@@ -65,7 +75,7 @@ export default class EventsRecycler extends Component {
             <Text style={styles.info}>{time}</Text>
           </View>
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     )
   }
 
@@ -110,6 +120,9 @@ const styles = StyleSheet.create({
   listItem: {
     flexDirection: 'row',
     margin: 10,
+  },
+  addButton: {
+    paddingRight: 11,
   },
 
 });
