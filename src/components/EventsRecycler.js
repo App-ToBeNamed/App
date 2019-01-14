@@ -46,8 +46,8 @@ export default class EventsRecycler extends Component {
     return {
       title: 'Explore',
       headerRight: (
-        <TouchableOpacity onPress={() => navigation.navigate("AddEvent")} >
-          <Ionicons name="md-add" size={32} color="black" />
+        <TouchableOpacity onPress={() => navigation.navigate("AddEvent")} style={styles.addButton}>
+          <Ionicons name="md-add" size={30} color="black" />
         </TouchableOpacity>
       ),
     };
@@ -123,6 +123,9 @@ const styles = StyleSheet.create({
   },
   addButton: {
     paddingRight: 11,
+  },
+  addButton: {
+    marginRight: 20,
   },
 
 });
