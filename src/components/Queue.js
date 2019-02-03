@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Dimensions, Text, Image, TouchableOpacity, Button } from 'react-native'
 import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview';
 import { Ionicons } from '@expo/vector-icons';
+import SongModel from './models/SongModel';
+
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -10,21 +12,22 @@ export default class Queue extends Component {
   constructor(props) {
     super(props);
 
-    const fakeData = [];
-    
+    this.data = [];
+
     for (i = 0; i < 100; i += 1) {
-      fakeData.push({
+      var song = new SongModel("Name", "artist", 0, 0);
+      this.data.push({
         type: 'NORMAL',
         item: {
-          id: i,
-          songName: "Song Name",
-          artist: "Artist:",
-          count: 0,
+          id: song.queueCode,
+          songName: song.name,
+          artist: song.artist,
+          voteCount: song.voteCount,
         },
       });
     }
     this.state = {
-      list: new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(fakeData),
+      list: new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(this.data),
     };
 
     this.layoutProvider = new LayoutProvider((i) => {
@@ -42,7 +45,7 @@ export default class Queue extends Component {
       };
     })
   }
-  
+
   static navigationOptions = ({ navigation }) => {
     return {
       title: 'Queue',
@@ -55,9 +58,8 @@ export default class Queue extends Component {
 
   };
   rowRenderer = (type, data) => {
-    const { image, songName, artist, count, id } = data.item;
-    console.log(data.item);
-
+    var { image, songName, artist, voteCount, id } = data.item;
+    console.log(voteCount);
     return (
       <View style={styles.listItem}>
         <Image style={styles.image} source={{ uri: image }} />
@@ -66,8 +68,9 @@ export default class Queue extends Component {
           <Text style={styles.info}>{artist}</Text>
         </View>
         <View style={styles.upVote}>
-          <Text style={styles.count}>{count}</Text>
-          <TouchableOpacity>
+          <Text style={styles.count}>{voteCount}</Text>
+          <TouchableOpacity
+            onPress={voteCount++}>
             <Ionicons
               style={styles.upIcon}
               name="md-arrow-up"
