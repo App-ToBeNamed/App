@@ -2,29 +2,46 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Dimensions, Text, Image, TouchableOpacity, Button } from 'react-native'
 import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview';
 import { Ionicons } from '@expo/vector-icons';
+import EventModel from './models/EventModel';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-export default class EventsRecycler extends Component {
-
+export default class EventsRecycler extends Component{
+  
   constructor(props) {
     super(props);
 
-    const fakeData = [];
+    this.data = [];
+
     for (i = 0; i < 100; i += 1) {
-      fakeData.push({
+      var event = new EventModel('eventName', 'organizer', 'location', 'time', 0);
+      this.data.push({
         type: 'NORMAL',
         item: {
-          id: i,
-          eventName: "Event Name",
-          organizer: "Organizer:",
-          location: "Location:",
-          time: "Time:",
+          id: event.queueCode,
+          eventName: event.eventName,
+          organizer: event.organizer,
+          location: event.location,
+          time: event.time,
         },
       });
     }
+    addEvent = (event) => {
+      i++;
+      this.data.push({
+        type: 'NORMAL',
+        item: {
+          id: event.queueCode,
+          eventName: event.eventName,
+          organizer: event.organizer,
+          location: event.location,
+          time: event.time,
+        },
+      })
+      
+    }
     this.state = {
-      list: new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(fakeData),
+      list: new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(this.data),
     };
 
     this.layoutProvider = new LayoutProvider((i) => {
