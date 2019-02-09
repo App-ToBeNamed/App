@@ -3,8 +3,10 @@ import { StyleSheet, View, Dimensions, Text, Image, TouchableOpacity, Button } f
 import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview';
 import { Ionicons } from '@expo/vector-icons';
 import EventModel from './models/EventModel';
+import { Divider } from 'react-native-elements';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 export default class EventsRecycler extends Component{
   
@@ -50,7 +52,7 @@ export default class EventsRecycler extends Component{
       switch (type) {
         case 'NORMAL':
           dim.width = SCREEN_WIDTH;
-          dim.height = 100;
+          dim.height = SCREEN_HEIGHT/3;
           break;
         default:
           dim.width = 0;
@@ -122,8 +124,8 @@ const styles = StyleSheet.create({
     maxWidth: SCREEN_WIDTH - (80 + 10 + 20),
   },
   image: {
-    height: 80,
-    width: 80,
+    height: 100,
+    width: 100,
     backgroundColor: '#abc',
   },
   name: {
@@ -143,6 +145,11 @@ const styles = StyleSheet.create({
   },
   addButton: {
     marginRight: 20,
+  },
+  separator: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#8E8E8E',
   },
 
 });

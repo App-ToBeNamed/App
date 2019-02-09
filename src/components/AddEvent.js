@@ -47,7 +47,7 @@ export default class AddEvent extends Component {
 
                     <TouchableOpacity
                         style={styles.buttonContainer}
-                        onPress={() => this.props.navigation.navigate("EventsRecycler", alert("Event Made"))}>
+                        onPress={() => this.props.navigation.navigate("EventsRecycler", alert("Success!","Event Made"))}>
                         <Text style={styles.buttonText}>MAKE EVENT</Text>
                     </TouchableOpacity>
                 </KeyboardAvoidingView>
