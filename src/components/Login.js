@@ -3,7 +3,7 @@ import { Text, View, TextInput, TouchableOpacity, Alert, Button, StyleSheet, Sta
 
 export default class Login extends Component {
     static navigationOptions = {
-        title: 'Our lit app',
+        title: 'Welcome',
     };
     render() {
         return (
@@ -29,6 +29,12 @@ export default class Login extends Component {
                         style={styles.buttonContainer}
                         onPress={() => this.props.navigation.navigate("EventsRecycler")}>
                         <Text style={styles.buttonText}>LOGIN</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.loginButtonContainer}
+                        onPress={() => this.props.navigation.navigate("EventsRecycler")}>
+                        <Text style={styles.buttonText}>REGISTER</Text>
                     </TouchableOpacity>
                 </KeyboardAvoidingView>
             </View>
@@ -69,11 +75,17 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         backgroundColor: '#2980b6',
-        paddingVertical: 15
+        paddingVertical: 15,
+        marginBottom: 10
     },
     buttonText: {
         color: '#fff',
         textAlign: 'center',
         fontWeight: '700'
+    },
+    loginButtonContainer: {
+        backgroundColor: '#2c3e50',
+        paddingVertical: 15,
+        marginBottom: 10
     },
 })

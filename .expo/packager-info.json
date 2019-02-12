@@ -1,9 +1,9 @@
 {
-  "devToolsPort": 19003,
+  "devToolsPort": 19004,
   "expoServerPort": 19000,
-  "packagerPort": null,
-  "packagerPid": null,
+  "packagerPort": 19005,
+  "packagerPid": 11604,
   "expoServerNgrokUrl": "https://i3-xv4.leothelindo.app.exp.direct",
   "packagerNgrokUrl": "https://packager.i3-xv4.leothelindo.app.exp.direct",
-  "ngrokPid": 2280
+  "ngrokPid": 3888
 }
