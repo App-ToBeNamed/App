@@ -52,7 +52,7 @@ export default class EventsRecycler extends Component{
       switch (type) {
         case 'NORMAL':
           dim.width = SCREEN_WIDTH;
-          dim.height = SCREEN_HEIGHT/3;
+          dim.height = SCREEN_HEIGHT/4;
           break;
         default:
           dim.width = 0;
@@ -94,6 +94,12 @@ export default class EventsRecycler extends Component{
             <Text style={styles.info}>{time}</Text>
           </View>
         </View>
+        <View
+  style={{
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
+  }}
+/>
       </TouchableOpacity>
     )
   }
@@ -149,7 +155,7 @@ const styles = StyleSheet.create({
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: '#8E8E8E',
+    backgroundColor: '#053889',
   },
 
 });
