@@ -3,7 +3,8 @@ import { StyleSheet, View, Dimensions, Text, Image, TouchableOpacity, Button } f
 import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview';
 import { Ionicons } from '@expo/vector-icons';
 import SongModel from './models/SongModel';
-
+import faker from 'faker';
+import preloaded1 from './preloaded1';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -14,17 +15,21 @@ export default class Queue extends Component {
 
     this.data = [];
 
-    for (i = 0; i < 100; i += 1) {
-      var song = new SongModel("Name", "artist", 0, 0);
-      this.data.push({
+    for (i = 0; i < preloaded1.length; i += 1) {
+      var song = new SongModel(faker.image.people(), faker.hacker.noun(), faker.name.findName(), 0, 0);
+      if(preloaded1[i].name.length<40){
+        this.data.push({
         type: 'NORMAL',
         item: {
           id: song.queueCode,
-          songName: song.name,
-          artist: song.artist,
+          image: preloaded1[i].album.images[0].url,
+          songName: preloaded1[i].name,
+          artist: preloaded1[i].artists[0].name,
           voteCount: song.voteCount,
         },
-      });
+        });
+      }
+      
     }
     this.state = {
       list: new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(this.data),
@@ -59,7 +64,6 @@ export default class Queue extends Component {
   };
   rowRenderer = (type, data) => {
     var { image, songName, artist, voteCount, id } = data.item;
-    console.log(voteCount);
     return (
       <View style={styles.listItem}>
         <Image style={styles.image} source={{ uri: image }} />
@@ -69,8 +73,7 @@ export default class Queue extends Component {
         </View>
         <View style={styles.upVote}>
           <Text style={styles.count}>{voteCount}</Text>
-          <TouchableOpacity
-            onPress={voteCount++}>
+          <TouchableOpacity>
             <Ionicons
               style={styles.upIcon}
               name="md-arrow-up"
@@ -110,7 +113,6 @@ const styles = StyleSheet.create({
   image: {
     height: 55,
     width: 55,
-    backgroundColor: '#abc',
   },
   name: {
     fontSize: 20,

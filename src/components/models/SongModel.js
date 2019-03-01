@@ -1,5 +1,6 @@
 export default class SongModel{
-    constructor(name, artist, voteCount, queueCode){
+    constructor(albumArt, name, artist, voteCount, queueCode){
+        this.albumArt = albumArt;
         this.voteCount = voteCount;
         this.artist = artist;
         this.name = name;
