@@ -78,7 +78,6 @@ export default class EventsRecycler extends Component{
 
   rowRenderer = (type, data) => {
     const { eventImg, eventName, organizer, location, time } = data.item;
-    console.log(eventImg);
     return (
       <TouchableOpacity onPress={() => this.props.navigation.navigate(
         "EventDetail", {

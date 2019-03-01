@@ -4,7 +4,7 @@ import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview
 import { Ionicons } from '@expo/vector-icons';
 import SongModel from './models/SongModel';
 import faker from 'faker';
-import preloaded from './preloaded';
+import preloaded1 from './preloaded1';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -15,16 +15,16 @@ export default class Queue extends Component {
 
     this.data = [];
 
-    for (i = 0; i < preloaded.length; i += 1) {
+    for (i = 0; i < preloaded1.length; i += 1) {
       var song = new SongModel(faker.image.people(), faker.hacker.noun(), faker.name.findName(), 0, 0);
-      if(preloaded[i].name.length<40){
+      if(preloaded1[i].name.length<40){
         this.data.push({
         type: 'NORMAL',
         item: {
           id: song.queueCode,
-          image: preloaded[i].album.images[0].url,
-          songName: preloaded[i].name,
-          artist: preloaded[i].artists[0].name,
+          image: preloaded1[i].album.images[0].url,
+          songName: preloaded1[i].name,
+          artist: preloaded1[i].artists[0].name,
           voteCount: song.voteCount,
         },
         });
