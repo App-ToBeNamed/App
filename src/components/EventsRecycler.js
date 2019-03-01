@@ -4,6 +4,7 @@ import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview
 import { Ionicons } from '@expo/vector-icons';
 import EventModel from './models/EventModel';
 import { Divider } from 'react-native-elements';
+import faker from 'faker';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -16,11 +17,12 @@ export default class EventsRecycler extends Component{
     this.data = [];
 
     for (i = 0; i < 100; i += 1) {
-      var event = new EventModel('eventName', 'organizer', 'location', 'time', 0);
+      var event = new EventModel("https://i.scdn.co/image/b2d894477a1921db71648df73bda055f68e86928", faker.random.word(), faker.name.findName(), faker.address.city(), faker.date.weekday() + ', ' + faker.date.month() + ' ' + faker.random.number(2) + ', 2019', 0);
       this.data.push({
         type: 'NORMAL',
         item: {
           id: event.queueCode,
+          eventImg: event.eventImg,
           eventName: event.eventName,
           organizer: event.organizer,
           location: event.location,
@@ -34,6 +36,7 @@ export default class EventsRecycler extends Component{
         type: 'NORMAL',
         item: {
           id: event.queueCode,
+          eventImg: event.eventImg,
           eventName: event.eventName,
           organizer: event.organizer,
           location: event.location,
@@ -74,11 +77,12 @@ export default class EventsRecycler extends Component{
   };
 
   rowRenderer = (type, data) => {
-    const { image, eventName, organizer, location, time } = data.item;
+    const { eventImg, eventName, organizer, location, time } = data.item;
+    console.log(eventImg);
     return (
       <TouchableOpacity onPress={() => this.props.navigation.navigate(
         "EventDetail", {
-          image: image,
+          eventImg: eventImg,
           eventName: eventName,
           organizer: organizer,
           location: location,
@@ -86,12 +90,12 @@ export default class EventsRecycler extends Component{
         })
       }>
         <View style={styles.listItem}>
-          <Image style={styles.image} source={{ uri: image }} />
+          <Image style={styles.image} source={{ uri: eventImg }} />
           <View style={styles.body}>
             <Text style={styles.name}>{eventName}</Text>
-            <Text style={styles.info}>{organizer}</Text>
-            <Text style={styles.info}>{location}</Text>
-            <Text style={styles.info}>{time}</Text>
+            <Text style={styles.info}>Organized by: {organizer}</Text>
+            <Text style={styles.info}>Where? : {location}</Text>
+            <Text style={styles.info}>When? : {time}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -126,7 +130,6 @@ const styles = StyleSheet.create({
   image: {
     height: 100,
     width: 100,
-    backgroundColor: '#abc',
   },
   name: {
     fontSize: 20,

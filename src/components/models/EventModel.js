@@ -1,6 +1,7 @@
 export default class EventModel{
-    constructor(eventName, organizer, location, time, queueCode){
+    constructor(eventImg, eventName, organizer, location, time, queueCode){
         this.time = time;
+        this.eventImg = eventImg;
         this.location = location;
         this.eventName = eventName;
         this.organizer = organizer;
@@ -20,4 +21,3 @@ export default class EventModel{
         return this.time;
     }
 }
-//var event = new Event("s", "d", "s", "d", 0);
